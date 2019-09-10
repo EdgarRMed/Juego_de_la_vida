@@ -1,0 +1,5 @@
+La función lógica o compuerta lógica not, 
+retorna un valor 1 ó 0 al efectuar la 
+operación NOT con dos valores boleanos, 
+lo que hace es cambiar el valor inicial
+por el contrario.

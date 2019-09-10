@@ -1,0 +1,5 @@
+La función lógica o compuerta lógica or, 
+retorna un valor 1 ó 0 al efectuar la 
+operación OR con dos valores boleanos, 
+será verdadero si al menos uno de los
+dos valores es 1.

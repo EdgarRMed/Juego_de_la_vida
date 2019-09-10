@@ -1,0 +1,4 @@
+La suma binaria es una operación
+aritmética realizada en base 2
+y sus reglas son las siguientes:
+

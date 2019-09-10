@@ -1,0 +1,17 @@
+Para poder entender la capacidad computacional del juego de la vida, es necesario encontrar 
+un conjunto de operadores que permitan implementar cualquier función lógica en Life.
+
+Para representar los valores bianrios utlilizaremos los gliders, un uno se representa con la
+existencia del glider y el cero con la ausencia de este.
+
+
+¿Qué es un glider?
+
+ El glider es la base de la formación de objetos en Life; son tambien los objetos en movimiento
+mas comunes; aparecen moviendose a través de la malla. 
+
+Las colisiones entre gliders estan clasificadas según el ángulo de choque: 180º ó 90º; 
+existen un total de 71 posibles colisiones de este tipo; son mas complicadas las colisiones
+entre tres o mas gliders.
+
+EJEMPLOS DE COLISIONES:

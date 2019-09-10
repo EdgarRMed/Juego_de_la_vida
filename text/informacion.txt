@@ -1,0 +1,30 @@
+Para entender mejor el juego de la vida, la mejor forma es probar con distintos 
+patrones o configuraciones iniciales, y observar como evolucionan de generación 
+en generación; sin necesidad de mucha práctica, vamos viendo que ciertas 
+formaciones u objetos se repiten; estos objetos, que usualmente aparecen, los 
+podemos clasificar según su comportamiento de la siguiente forma:
+
+Tipo I : Son aquellos en los que no hay nacimientos ni fallecimientos, y nunca 
+cambian; permanecen estables (Still-Life) (Constantes).
+
+Tipo II: Son aquellos que evolucionan a través de diversos estados pero vuelven
+ a su forma inicial. (Oscillators)(Osciladores o Periódicos).
+
+Tipo III: Al igual que el tipo II evolucionan a través de estados volviendo a su
+ forma inicial, pero desplazándose a velocidad constante (spaceships) 
+(naves espaciales) .El mas común de ellos es el glider o deslizador, que vemos 
+en la primera animación; podemos observar como se desplaza recorriendo la malla;
+ es la base de la implementación de funciones en Life.
+
+Tipo IV: Son aquellos en los cuales la población siempre esta en aumento.
+
+	a: aquellos que emiten spaceships en cada ciclo (guns).
+
+	b: son spaceships que van dejando a su paso estructuras del tipo I , II y/o 
+	III en cada ciclo (puffers).
+
+	c: su población aumenta de forma cuadrática (breeders).
+
+Tipo V: Inestables, son aquellos que nunca vuelven a su estado original. 
+Aquellas que tardan mucho tiempo en estabilizarse reciben el nombre de 
+metheuselahs.

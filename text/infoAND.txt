@@ -1,0 +1,5 @@
+La función lógica o compuerta lógica and, 
+retorna un valor 1 ó 0 al efectuar la operación
+AND con dos valores boleanos, será verdadero
+si y solo si los dos valores son 1.
+
