@@ -1,10 +1,14 @@
 import tkinter as tk
 from functools import partial
+import game_logic as g_log
+import table
 
 
 class Funciones:
 
-    def __init__(self, parent):
+    def __init__(self, parent, size_m, size_n):
+        self.size_m = size_m
+        self.size_n = size_n
         self.frame = tk.Frame(parent)
         self.imagen1 = tk.PhotoImage(file="Images/AND.png")
         self.imagen2 = tk.PhotoImage(file="Images/OR.png")
@@ -30,7 +34,7 @@ class Funciones:
         menuArchivo = tk.Menu(menuBar, tearoff=0)
         menuInfo = tk.Menu(menuBar, tearoff =0)
         # Paso 3 se crean los comandos de los menús
-        menuArchivo.add_command(label="Salir   ", font=("Comic Sans Ms", 15), command=root.destroy)
+        menuArchivo.add_command(label="Salir   ", font=("Comic Sans Ms", 15), command=self.master.destroy)
 
         ################################ Menu de informacion #############################################
         menuInfo.add_command(label = "General", font=("Comic Sans Ms", 15), command = self.openInformation)
@@ -43,21 +47,21 @@ class Funciones:
         menuBar.add_cascade(label="Archivo", font=("Comic Sans Ms", 15), menu=menuArchivo)
         menuBar.add_cascade(label = "Información", font=("Comic Sans Ms", 15), menu=menuInfo )
         # Paso 5 Indicar que la barra de menús estará en la ventana
-        root.config(menu=menuBar)
+        self.master.config(menu=menuBar)
 
         for i in range(2):
-            self.frame.grid_columnconfigure(i, weight=1)
+            self.master.grid_columnconfigure(i, weight=1)
 
-        for j in range(2):
-            self.frame.grid_rowconfigure(j, weight=1)
+        for j in range(1):
+            self.master.grid_rowconfigure(j, weight=1)
 
 
 ##################################33 Botones de la ventana principal #################################################################
 
-        patron1 = tk.Button(self.frame, text ="NOT", image = self.imagen1, compound = "left", font=("Comic Sans Ms", 20), command = partial(self.select_button, "NOT")).grid(column=0, row=0,sticky ='NEWS')
-        patron2 = tk.Button(self.frame, text="OR", image = self.imagen2, compound = "left", font=("Comic Sans Ms", 20), command = partial(self.select_button, "OR")).grid(column=0, row=1,sticky = 'NEWS')
-        patron3 = tk.Button(self.frame, text="AND", image = self.imagen3, compound = "left", font=("Comic Sans Ms", 20), command = partial(self.select_button, "AND")).grid(column=1, row=0,sticky = 'NEWS')
-        patron4 = tk.Button(self.frame, text="Suma\nBinaria", image = self.imagen4, compound = "left", font=("Comic Sans Ms", 20), command = partial(self.select_button,"Bin")).grid(column=1, row=1,sticky = 'NEWS')
+        patron1 = tk.Button(self.master, text ="NOT", image = self.imagen3, compound = "left", font=("Comic Sans Ms", 20), command = partial(self.select_button, "NOT")).grid(column=0, row=0,sticky ='NEWS')
+        #patron2 = tk.Button(self.master, text="OR", image = self.imagen2, compound = "left", font=("Comic Sans Ms", 20), command = partial(self.select_button, "OR")).grid(column=0, row=1,sticky = 'NEWS')
+        patron3 = tk.Button(self.master, text="AND", image = self.imagen1, compound = "left", font=("Comic Sans Ms", 20), command = partial(self.select_button, "AND")).grid(column=1, row=0,sticky = 'NEWS')
+        #patron4 = tk.Button(self.master, text="Suma\nBinaria", image = self.imagen4, compound = "left", font=("Comic Sans Ms", 20), command = partial(self.select_button,"Bin")).grid(column=1, row=1,sticky = 'NEWS')
        # patron5 = tk.Button(self.frame, text="Inestables", image = self.imagen5, compound = "left").grid(column=1, row=1,sticky = 'NEWS')
        # patron6 = tk.Button(self.frame, text="Patron6").grid(column=1, row=2,sticky = 'NEWS')
 
@@ -152,23 +156,33 @@ class Funciones:
         informationSUM_win.resizable(width=False, height=False)
         informationSUM_win.mainloop()
 
+    def start_game(self, file_name):
+        p_mat, s_mat = g_log.start_from_option(3, self.size_m, self.size_n, file_name)
+        if p_mat == '':
+            pass
+        else:
+            game_window = tk.Toplevel(self.master)
+            game_window.wm_geometry("1200x700")
+            self.game_app = table.TableGrid(game_window, self.size_m, self.size_n, p_mat, s_mat)
 
-    def select_button(self,opt):
-        self.fileName = ""
+    def select_button(self, opt):
+        file_name = ''
         if opt == "AND":
-            self.fileName = "AND.bin"
+            file_name = "AND.bin"
         elif opt == "OR":
-            self.fileName = "OR.bin"
+            file_name = "OR.bin"
         elif opt == "NOT":
-            self.fileName = "NOT.bin"
+            file_name = "NOT.bin"
         elif opt == "Bin":
-            self.fileName="Sum.bin"
+            file_name = "Sum.bin"
 
-        return self.fileName
+        self.start_game(file_name)
+
+
 
 if __name__ == "__main__":
     root = tk.Tk()
     root.title("Funciones")
-    root.geometry("600x500")
+    root.geometry("600x300")
     funciones = Funciones(root).frame.pack(fill = tk.BOTH, expand= True)
     root.mainloop()
